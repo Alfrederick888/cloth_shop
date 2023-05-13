@@ -40,7 +40,7 @@ def show_card(request, card_id):
         'card': card,
         'menu': menu,
         'name': card.name,
-        'cat_selected': 1,
+        'cat_selected': card.cat_id,
     }
     return render(request, 'fabric_shop_app/product_card.html', context=context)
 
