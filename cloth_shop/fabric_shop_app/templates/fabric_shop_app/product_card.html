@@ -1,0 +1,29 @@
+{% extends 'fabric_shop_app/base.html' %}
+<!--<h1>{{ card.name }}</h1>-->
+<!--{% if card.picture %}-->
+<!--<p><img class="img-article-left" src="{{ card.picture.url }}"></p>-->
+<!--{% endif %}-->
+<!--{{ card.description|linebreaks }}-->
+{% block container %}
+
+<body>
+
+    <h1 class="display-3 mt-4" data-test="title">{{ card.name }}</h1>
+
+    <!-- HERO -->
+
+    <p class="lead" data-test="lead"><span data-test="country">В наличии</span> {{ card.quantity }} <span data-text="departure">ед. Стоимость</span> <span data-text="nights">{{ card.price }} рублей </span>за единицу.</p>
+
+    <img data-test="picture" src="{{ card.picture.url }}" class="w-75" alt="">
+
+    <p class="my-4 w-75" data-test="description">{{ card.description }}</p>
+
+    <a href="" class="btn btn-success btn-lg" data-test="buybutton"> Купить ткань </a>
+</div>
+
+</body>
+</html>
+  </body>
+</html>
+
+{% endblock %}
