@@ -10,6 +10,7 @@ class ClothAdmin(admin.ModelAdmin):
     search_fields = ('name', 'color')
     list_editable = ('is_published',)
     list_filter = ('is_published',)
+    prepopulated_fields = {'slug': ('name',)}
 
 
 class CategoryAdmin(admin.ModelAdmin):
