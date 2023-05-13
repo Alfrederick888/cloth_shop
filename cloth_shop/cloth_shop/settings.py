@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fabric_shop_app.apps.FabricShopAppConfig',
+    'telebot.apps.TelebotConfig',
+
 ]
 
 MIDDLEWARE = [

@@ -44,6 +44,13 @@ def show_card(request, card_id):
     }
     return render(request, 'fabric_shop_app/product_card.html', context=context)
 
+def thanks_page(request):
+    name = request.POST['name']
+    phone = request.POST['phone']
+    element = Order(order)
 
+
+def buy_page(request):
+    return render(request, 'fabric_shop_app/buy_page.html')
 
 

@@ -26,4 +26,6 @@ urlpatterns = [
     path('', main_view, name='home'),
     path('card/<int:card_id>/', show_card, name='card'),
     path('category/<int:cat_id>/', show_category, name='category'),
+    path('thanks_page/', thanks_page, name='thanks_page'),
+    path('buy_page/', buy_page, name='buy_page'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
