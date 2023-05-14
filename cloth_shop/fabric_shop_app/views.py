@@ -1,6 +1,8 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
+from telebot.sendmessage import sendTelegram
 from .models import *
+from .forms import *
 
 menu = [
     {'title': 'Для верхней одежды', 'url_name': 'true_cloth'},
@@ -44,13 +46,19 @@ def show_card(request, card_id):
     }
     return render(request, 'fabric_shop_app/product_card.html', context=context)
 
+
 def thanks_page(request):
-    name = request.POST['name']
-    phone = request.POST['phone']
-    element = Order(order)
+    if request.POST:
+        name = request.POST['name']
+        phone = request.POST['phone']
+        element = Order(name=name, phone=phone)
+        element.save()
+        sendTelegram(tg_name=name, tg_phone=phone)
+        return render(request, 'fabric_shop_app/thanks_page.html', {'name': name})
+    else:
+        return render(request, 'fabric_shop_app/thanks_page.html')
 
 
 def buy_page(request):
-    return render(request, 'fabric_shop_app/buy_page.html')
-
-
+    form = OrderForm()
+    return render(request, 'fabric_shop_app/buy_page.html', {'form': form})

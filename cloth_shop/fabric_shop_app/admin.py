@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order, Cloth, Category, Comment, Status
+from .models import *
 
 
 class ClothAdmin(admin.ModelAdmin):
@@ -17,11 +17,14 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('title',)
     prepopulated_fields = {'slug': ('title',)}
 
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('name', 'phone', 'status')
+
 
 
 
 admin.site.register(Cloth, ClothAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Order)
+admin.site.register(Order, OrderAdmin)
 admin.site.register(Comment)
 admin.site.register(Status)
