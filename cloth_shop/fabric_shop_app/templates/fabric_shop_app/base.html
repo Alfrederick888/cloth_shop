@@ -1,0 +1,60 @@
+{% load static %}
+{% load fabric_shop_app_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Line</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container mt-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" data-test="logo" href="{% url 'home' %}">Line</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav" data-test="navigation">
+
+<!--Категории тканей-->
+
+{% show_categories 'title' cat_selected %}
+
+        <!---->
+
+      </ul>
+      </div>
+    </nav>
+
+    <!-- Баннер -->
+{% block container %}
+<div class="jumbotron text-center mt-7">
+    <h1 class="display-5">Line - стабильное качество, бесконечный выбор</h1>
+    <p class="lead">У нас вы найдете ткань для своих творений</p>
+    <p class="mt-4 w-50 mx-auto">Быстрая доставка, низкие цены</p>
+</div>
+
+    <!-- Карточки -->
+<div class="center">
+<div class="row mt-5" data-test="cards">
+{% for card in cards %}
+    <div class="col-4" data-test="card">
+        <div class="card mb-3" >
+                {% if card.picture %}
+                <img src='{{ card.picture.url }}' class="card-img-top img-fluid" data-test="picture"/>
+                {% endif %}
+                <div class="card-body">
+                <h5 class="card-title">{{ card.name }}</h5>
+                <p class="card-text">{{ card.description }}</p>
+                <a href="{{ card.get_absolute_url }}" class="btn btn-sm btn-primary" data-test="tourlink">Подробнее</a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+</div>
+</body>
+</html>
+{% endblock %}
